@@ -1,0 +1,75 @@
+{% extends 'homepage_base.html' %}
+
+{% block style %}
+    .round{
+        border-radius: 25px
+    }
+    .px-2{
+        padding-left: ($spacer * .5) !important;
+        padding-right: ($spacer * .5) !important;
+    }
+    #icon{
+        width: 40px;
+    }
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+    {% csrf_token %}
+        <div class="d-flex justify-content-center">
+            {% load static %}
+            <img src="{% static "home/App_logo.png" %}" class="rounded-circle img-fluid"
+                 style="height: 250px" alt="">
+        </div>
+        <div class="mb-3">
+            <h1 class="text-secondary align-middle text-center">Welcome!</h1>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text round bg-primary bg-opacity-25" id="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-person-fill" viewBox="0 0 16 16">
+                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                 </svg>
+            </span>
+            <input type="text" class="form-control round" id="username" name="username"
+                   placeholder="Username">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text round bg-primary bg-opacity-25" id="icon">@</span>
+            <input type="email" class="form-control round" id="email" name="email" placeholder="Email">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text round bg-primary bg-opacity-25" id="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-chat-right-dots" viewBox="0 0 16 16">
+                    <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+                    <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+            </span>
+            <input type="password" class="form-control round" id="password" name="password" placeholder="Password">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text round bg-primary bg-opacity-25" id="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-chat-right-dots" viewBox="0 0 16 16">
+                    <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+                    <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+            </span>
+            <input type="password" class="form-control round" id="confirm_password" name="confirm_password"
+                   placeholder="Confirm Password">
+        </div>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-outline-primary round mb-3">
+               Sign Up</button>
+        </div>
+        <div class="px-2">
+            <span id="newUser" class="form-text">
+              Already have an account? Back to
+            </span>
+            <span id="signup" class="form-text">
+                 <a href="/">Sign In</a>
+            </span>
+        </div>
+    </form>
+{% endblock %}

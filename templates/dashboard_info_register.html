@@ -1,0 +1,100 @@
+{% extends 'dashboard_base.html' %}
+
+{% block style %}
+    .nav-link:active,
+    .nav-link:focus,
+    .nav-link:hover {
+        background-color: whitesmoke;
+    }
+
+    .container{
+        width: 100px;
+        position: relative;
+        top: 5%;
+        right: 440px;
+    }
+
+    #form_header{
+        position: relative;
+        left: 10px;
+        width: 500px;
+    }
+
+    .register_form{
+        position: relative;
+        left: 10px;
+        top: 10%;
+        width: 50vw;
+    }
+
+{% endblock %}
+
+{% block sideNav_content %}
+    <li class="nav-item">
+        <a class="nav-link px-2 mb-3" aria-current="page" href="/dashboard">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link px-2 mb-3" aria-current="page" href="/file_converter">Processor</a>
+    </li>
+{% endblock %}
+
+{% block main_content %}
+    <div class="container">
+        <h1 class="text-primary " id="form_header">Infant's information register</h1>
+        <div class="register_form">
+            <form action="{% url 'info_register' %}" method="post">
+            {% csrf_token %}
+                <h4 class="text-primary">1. Infant's information</h4>
+                <div class="row">
+                    <div class="mb-1 col">
+                        <label for="" class="form-label text-primary">Infant's ID</label>
+                        <input type="text" class="form-control" name="infant_id" id="infant_id">
+                    </div>
+                    <div class="mb-1 col">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-1 col">
+                        <label for="" class="form-label text-primary">Infant's name</label>
+                        <input type="text" class="form-control" name="infant_name" id="infant_name">
+                    </div>
+                    <div class="mb-1 col">
+                        <label for="" class="form-label text-primary">Date of Birth</label>
+                        <input type="date" class="form-control" name="date_of_birth" placeholder="">
+                    </div>
+                </div>
+                <h4 class="text-primary">2. Parents' information</h4>
+                <div class="mb-1">
+                    <label for="" class="form-label text-primary">Parent's name</label>
+                    <input type="text" class="form-control" name="parent_name" placeholder="">
+                </div>
+                <div class="mb-1">
+                    <label for="" class="form-label text-primary">Phone number</label>
+                    <input type="text" class="form-control" name="phone_num" placeholder="">
+                </div>
+                <div class="mb-1">
+                    <label for="" class="form-label text-primary">Email address</label>
+                    <input type="email" class="form-control" name="email_add" placeholder="">
+                </div>
+                <div class="mb-1">
+                    <label for="" class="form-label text-primary">House address</label>
+                    <input type="text" class="form-control" name="house_add" placeholder="">
+                </div>
+                <h4 class="text-primary">3. Device's information</h4>
+                <div class="mb-1">
+                    <label for="" class="form-label text-primary">Device ID</label>
+                    <input type="text" class="form-control" name="device_id" placeholder="">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label text-primary">Starting date</label>
+                    <input type="date" class="form-control" name="date_started" placeholder="">
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-outline-primary round mb-1" name="submit">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

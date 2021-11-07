@@ -1,0 +1,131 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block style %}
+    .nav-link:active,
+    .nav-link:focus,
+    .nav-link:hover {
+        background-color: whitesmoke;
+    }
+
+    .overall_container{
+        width: 80vw;
+        height: 100vh;
+        position: absolute;
+        left: 18vw;
+{#        border: solid red;#}
+    }
+
+    .container{
+        position: absolute;
+        width: 40vw;
+        padding: 1%;
+    }
+
+    .scroll{
+        height: 64vh;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+
+{% endblock %}
+
+{% block sideNav_content %}
+    <li class="nav-item">
+        <a class="nav-link px-2 mb-3" aria-current="page" href="/dashboard">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active px-2 mb-3" aria-current="page" href="/file_converter">Processor</a>
+    </li>
+{% endblock %}
+
+{% block main_content %}
+    <div class="overall_container">
+        <div class="row align-items-start mt-3">
+            <div class="col">
+                <h3 class="text-primary">File converter</h3>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text round border border-primary text-center"
+                              id="infant_id" style="width: 109px">
+                            Infant's ID
+                        </span>
+                        <input type="text" class="form-control round border border-primary" name="infant_id">
+                    </div>
+                    <div>
+                        <input type="file" class="form-control round border border-primary mb-3" name="upload">
+                        <button type="submit" name="convert_file" class="btn btn-outline-primary round">
+                            Convert
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col">
+                <h3 class="text-primary">Infants' information</h3>
+                <a href="/info_register/">
+                    <button type="button" class="btn btn-outline-primary round button_display">
+                        New patient
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="row align-items-start mt-3">
+            <div class="col">
+                <h4 class="text-primary mt-3">Uploaded files history</h4>
+                <div class="scroll col">
+                    <table class="table table-bordered text-center text-primary">
+                        <thead>
+                        <tr>
+                            <th scope="col">Infant's ID</th>
+                            <th scope="col">Uploaded .txt files</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for uploaded_file in uploaded_files %}
+                            <tr>
+                                <th scope="row">{{ uploaded_file.infant_id }}</th>
+                                <td>{{ uploaded_file.file.url }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col">
+                <h4 class="text-primary mt-3">Infants' profile list</h4>
+                <div class="scroll col">
+                    <table class="table table-bordered text-center text-primary">
+                        <thead>
+                        <tr>
+                            <th scope="col">Infant's ID</th>
+                            <th scope="col">Infant's name</th>
+                            <th scope="col">Device ID</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for patient_info in info %}
+                            <tr>
+                            {% if patient_info.infant_id == "" %}
+                                <th scope="row">NA</th>
+                            {% else %}
+                                <th scope="row">{{ patient_info.infant_id }}</th>
+                            {% endif %}
+                                <td>{{ patient_info.infant_name }}</td>
+                                <td>{{ patient_info.device_id }}</td>
+                                <td>
+                                    <form action="{% url 'delete_profile' patient_info.pk %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'dashboard_base.html' %}
+
+{% block style %}
+
+    .nav-link:active,
+    .nav-link:focus,
+    .nav-link:hover {
+    background-color: whitesmoke;
+    }
+
+    .center{
+    position: absolute;
+    left: 45%;
+    width: 25vw;
+    border: 3px solid purple;
+    padding: 10px;
+    }
+
+    .overall_container{
+    width: 85vw;
+    height: 100vh;
+    position: absolute;
+    left: 15vw;
+    {#        border: solid red;#}
+    }
+
+    .image{
+        height: 50vh;
+        width: 85vw;
+    }
+{% endblock %}
+
+{% block sideNav_content %}
+    <li class="nav-item">
+        <a class="nav-link active px-2 mb-3" aria-current="page" href="/dashboard">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link px-2 mb-3" aria-current="page" href="/file_converter">Processor</a>
+    </li>
+{% endblock %}
+
+{% block main_content %}
+    <div class="overall_container">
+        {% load static %}
+            <img src="{% static 'home/unii.jpeg' %}"
+                 class="img-fluid image">
+            <h1 class="text-center text-primary">BMET 3921: Biomedical Design and Technology</h1>
+            <h2 class="text-center text-primary">Team 10 - Project F</h2>
+            <h4 class="text-center text-primary">Team member 1 - SID</h4>
+            <h4 class="text-center text-primary">Team member 2 - SID</h4>
+            <h4 class="text-center text-primary">Team member 3 - SID</h4>
+            <h4 class="text-center text-primary">Team member 4 - SID</h4>
+            <h4 class="text-center text-primary">Team member 5 - SID</h4>
+            <h4 class="text-center text-primary">Team member 6 - SID</h4>
+            <h4 class="text-center text-primary">Team member 7 - SID</h4>
+    </div>
+{% endblock %}
